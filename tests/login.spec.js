@@ -40,4 +40,23 @@ test.describe('IMS Login Tests', () => {
     await page.screenshot({ path: 'screenshots/TC4-invalid-username.png', fullPage: true });
   });
 
+  test('TC5 - Super Admin can navigate to Proxy Management page', async ({ page }) => {
+  const { username, password } = testData.validUser;
+
+  // Login as Super Admin
+  await login(page, username, password);
+
+  // Verify Super Admin Dashboard loaded
+  await expect(page.getByRole('heading', { name: 'SUPER ADMIN DASHBOARD' })).toBeVisible({ timeout: 15000 });
+
+  // Click Proxy Management card
+  await page.getByText('Proxy ManagementAssign and').click();
+
+  // Verify navigation to Proxy Management page
+  await expect(page).toHaveURL(/proxy-management/i);
+  await expect(page.getByRole('heading', { name: 'Proxy Management' })).toBeVisible({ timeout: 15000 });
+
+  await page.screenshot({ path: 'screenshots/TC5-proxy-management-navigation.png', fullPage: true });
+});
+
 });
