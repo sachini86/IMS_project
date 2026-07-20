@@ -32,7 +32,7 @@ export default defineConfig({
     ignoreHTTPSErrors: true,
 
     launchOptions: {
-      slowMo: 500, // slight delay between actions, useful while learning/watching
+      slowMo: 3000, // slight delay between actions, useful while learning/watching
     },
 
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
